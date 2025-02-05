@@ -1,9 +1,12 @@
 import { Router } from "express";
-
-import * as HomeController from "../controllers/homeController";
+import movieRoutes from "./movieRoutes";
+import awardRoutes from "./awardRoutes";
+import databaseRoutes from "./databaseRoutes";
 
 const router = Router();
 
-router.get("/", HomeController.home);
+router.use("/movies", movieRoutes);
+router.use("/awards", awardRoutes);
+router.use("/database", databaseRoutes);
 
 export default router;
