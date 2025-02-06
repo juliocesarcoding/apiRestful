@@ -9,9 +9,11 @@ export const getMovies = (req: Request, res: Response) => {
 
 export const getMovie = (req: Request, res: Response) => {
  const movie = getMovieById(Number(req.params.id));
- if (!movie) {
+ if (Number(req.params.id) && !movie) {
   res.status(404).send("Movie not found");
   return;
+ } else if (!Number(req.params.id)) {
+  res.status(400).send("Invalid ID");
  }
  res.status(200).json(movie);
 };

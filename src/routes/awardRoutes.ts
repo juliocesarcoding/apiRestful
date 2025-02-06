@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getProducersIntervals } from "../controllers/awardController";
+import { getAwards } from "../controllers/awardController";
 
 const router = Router();
 
-router.get("/", getProducersIntervals);
+router.get("/", getAwards);
 
 export default router;

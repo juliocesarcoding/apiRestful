@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { getProducersWithIntervals } from "../services/producerService";
+import { getAwardsOfProducersWithMoreWin } from "../services/awardService";
 
-export const getProducersIntervals = (req: Request, res: Response) => {
- const result = getProducersWithIntervals();
+export const getAwards = (req: Request, res: Response) => {
+ const result = getAwardsOfProducersWithMoreWin();
  res.status(200).json(result);
 };

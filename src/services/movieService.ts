@@ -1,4 +1,4 @@
-import db from "../database/index";
+import db from "../database/db";
 export const getAllMovies = () => {
  return db.prepare("SELECT * FROM movies").all();
 };

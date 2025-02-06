@@ -2,15 +2,7 @@ import fs from "fs";
 import path from "path";
 import csvParser from "csv-parser";
 import { Database } from "better-sqlite3";
-
-type MovieRow = {
- year: number;
- title: string;
- studios: string;
- producers: string;
- winner: number;
-}[];
-
+import { Movie } from "../models/Movie";
 type Response = {
  error: string | null;
  message: string | null;
@@ -38,7 +30,7 @@ export const insertMoviesFromCsv = async (db: Database): Promise<Response> => {
     }
    });
 
-   const rows: MovieRow = [];
+   const rows: Movie[] = [];
    fs
     .createReadStream(csvFilePath)
     .pipe(csvParser({ separator: ";" }))
@@ -55,7 +47,6 @@ export const insertMoviesFromCsv = async (db: Database): Promise<Response> => {
      }
 
      transaction(rows);
-     console.log(" CSV file processed successfully!");
      resolve({ error: null, message: "Database populated successfully!" });
     })
     .on("error", (error) => {

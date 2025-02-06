@@ -2,7 +2,7 @@ import express, { ErrorRequestHandler, Request, Response } from "express";
 import cors from "cors";
 import main from "./routes/index";
 
-import { initDatabase } from "./database";
+import { initDatabase } from "./database/db";
 const server = express();
 server.use(cors());
 server.use(express.urlencoded({ extended: true }));
@@ -17,8 +17,11 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
  console.log(err);
  res.json({ error: "An error occured. Bad Request" });
 };
-// initDatabase();
 server.use(errorHandler);
 server.use(express.json());
+
+(async () => {
+ initDatabase();
+})();
 
 export default server;

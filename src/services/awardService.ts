@@ -1,11 +1,10 @@
-import db from "../database/index";
+import db from "../database/db";
 
-export const getProducersWithIntervals = () => {
+export const getAwardsOfProducersWithMoreWin = () => {
  const winners = db
   .prepare("SELECT year, producers as producer FROM movies WHERE winner = 1")
   .all();
 
- console.log(winners);
  const producerMap = new Map<string, number[]>(); // Maps producers to the years they won
 
  // Organizar os produtores e os anos em que ganharam
