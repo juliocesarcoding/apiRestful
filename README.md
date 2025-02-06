@@ -34,7 +34,7 @@ The project uses **SQLite** for database storage via **better-sqlite3** for perf
 
 ```bash
 git clone https://github.com/juliocesarcoding/apiRestful.git
-cd movie-api
+cd apiRestful
 ```
 
 ---
@@ -94,8 +94,22 @@ npm test --verbose
  "success": true,
  "message": "Movies fetched successfully",
  "data": [
-  { "id": 1, "title": "Can't Stop the Music", "year": 1980 },
-  { "id": 2, "title": "Cruising", "year": 1980 }
+  {
+   "id": 1,
+   "year": 1980,
+   "title": "Can't Stop the Music",
+   "studios": "Associated Film Distribution",
+   "producers": "Allan Carr",
+   "winner": 1
+  },
+  {
+   "id": 2,
+   "year": 1980,
+   "title": "Cruising",
+   "studios": "Lorimar Productions, United Artists",
+   "producers": "Jerry Weintraub",
+   "winner": 0
+  }
  ],
  "error": null
 }
@@ -143,7 +157,7 @@ The Environment Variables in this project is disabled, becausa is unnecessary pu
 
 ### **Scripts**
 
-- **`npm run dev`** - Run the application in development mode.
+- **`npm run dev`** - Run the application.
 - **`npm test`** - Run Jest tests with in-memory database.
 
 ---
