@@ -11,5 +11,6 @@ describe("Test award endpoint", () => {
   const response = await request(app).get("/api/awards");
   expect(response.status).toBe(200);
   expect(Object.keys(response.body).length).toBeGreaterThan(0);
+  expect(response.body.success).toBeTruthy();
  });
 });

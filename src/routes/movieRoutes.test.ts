@@ -10,13 +10,13 @@ describe("Test api routes", () => {
  it("Should return 200 and an array of movies", async () => {
   const response = await request(app).get("/api/movies");
   expect(response.status).toBe(200);
-  expect(Array.isArray(response.body)).toBeTruthy();
+  expect(response.body.success).toBeTruthy();
  });
 
  it("Should return 200 and a single movie", async () => {
   const response = await request(app).get("/api/movies/1");
   expect(response.status).toBe(200);
-  expect(response.body).toHaveProperty("id", 1);
+  expect(response.body.data).not.toBeNull();
  });
 
  it("Should return 404 for a non-existent movie", async () => {

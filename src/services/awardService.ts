@@ -7,9 +7,9 @@ export const getAwardsOfProducersWithMoreWin = () => {
 
  const producerMap = new Map<string, number[]>(); // Maps producers to the years they won
 
- // Organizar os produtores e os anos em que ganharam
+ // Organize producers by year
  winners.forEach(({ year, producer }: any) => {
-  const producers = producer.split(", ").map((p: any) => p.trim()); // Separar múltiplos produtores
+  const producers = producer.split(", ").map((p: any) => p.trim()); // Separate producers
   producers.forEach((p: any) => {
    if (!producerMap.has(p)) {
     producerMap.set(p, []);
@@ -25,9 +25,9 @@ export const getAwardsOfProducersWithMoreWin = () => {
   followingWin: number;
  }[] = [];
 
- // Calcular intervalos entre prêmios consecutivos
+ // Calculate intervals between wins
  producerMap.forEach((years, producer) => {
-  years.sort((a, b) => a - b); // Ordena os anos para calcular os intervalos
+  years.sort((a, b) => a - b); // Sort years
 
   for (let i = 1; i < years.length; i++) {
    intervals.push({
@@ -39,7 +39,7 @@ export const getAwardsOfProducersWithMoreWin = () => {
   }
  });
 
- // Encontrar os maiores e menores intervalos
+ // Find the minimum and maximum intervals
  const minInterval = Math.min(...intervals.map((i) => i.interval));
  const maxInterval = Math.max(...intervals.map((i) => i.interval));
 

@@ -1,19 +1,24 @@
 import { Request, Response } from "express";
-import { get } from "http";
 import { getAllMovies, getMovieById } from "../services/movieService";
+import { sendError, sendSuccess } from "../utils/responseHandler";
 
 export const getMovies = (req: Request, res: Response) => {
  const movies = getAllMovies();
- res.status(200).json(movies);
+ if (!movies) {
+  sendError(res, "No movies found", null, 404);
+  return;
+ }
+ sendSuccess(res, "Movies found", movies);
 };
 
 export const getMovie = (req: Request, res: Response) => {
  const movie = getMovieById(Number(req.params.id));
  if (Number(req.params.id) && !movie) {
-  res.status(404).send("Movie not found");
+  sendError(res, "Movie not found", null, 404);
   return;
  } else if (!Number(req.params.id)) {
-  res.status(400).send("Invalid ID");
+  sendError(res, "Invalid movie ID", null, 400);
+  return;
  }
- res.status(200).json(movie);
+ sendSuccess(res, "Movie found", movie);
 };

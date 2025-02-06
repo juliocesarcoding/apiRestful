@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import { getAwardsOfProducersWithMoreWin } from "../services/awardService";
+import { sendError, sendSuccess } from "../utils/responseHandler";
 
 export const getAwards = (req: Request, res: Response) => {
  const result = getAwardsOfProducersWithMoreWin();
- res.status(200).json(result);
+ if (!result) {
+  sendError(res, "No awards found", null, 404);
+ }
+ sendSuccess(res, "Awards found", result);
 };
