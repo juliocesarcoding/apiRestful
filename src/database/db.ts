@@ -3,7 +3,7 @@ import { insertMoviesFromCsv } from "./seed";
 
 const db = new Database(":memory:");
 
-export const initDatabase = () => {
+export const initDatabase = async () => {
  const createTable = `
 CREATE TABLE IF NOT EXISTS movies (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,7 +15,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 );
 `;
  db.exec(createTable);
- insertMoviesFromCsv(db);
+ await insertMoviesFromCsv(db);
 };
 
 export default db;

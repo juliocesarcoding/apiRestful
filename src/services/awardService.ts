@@ -5,11 +5,14 @@ export const getAwardsOfProducersWithMoreWin = () => {
   .prepare("SELECT year, producers as producer FROM movies WHERE winner = 1")
   .all();
 
- const producerMap = new Map<string, number[]>(); // Maps producers to the years they won
+ const producerMap = new Map<string, number[]>(); // Map producers to their winning years
 
  // Organize producers by year
  winners.forEach(({ year, producer }: any) => {
-  const producers = producer.split(", ").map((p: any) => p.trim()); // Separate producers
+  const producers = producer
+   .split(/,| and | e /) // Separate by ',', 'and', or 'e'
+   .map((p: any) => p.trim());
+
   producers.forEach((p: any) => {
    if (!producerMap.has(p)) {
     producerMap.set(p, []);
@@ -27,14 +30,15 @@ export const getAwardsOfProducersWithMoreWin = () => {
 
  // Calculate intervals between wins
  producerMap.forEach((years, producer) => {
-  years.sort((a, b) => a - b); // Sort years
+  const uniqueYears = [...new Set(years)]; // Remove duplicate years
+  uniqueYears.sort((a, b) => a - b); // Sort years ascending
 
-  for (let i = 1; i < years.length; i++) {
+  for (let i = 1; i < uniqueYears.length; i++) {
    intervals.push({
     producer,
-    interval: years[i] - years[i - 1],
-    previousWin: years[i - 1],
-    followingWin: years[i],
+    interval: uniqueYears[i] - uniqueYears[i - 1],
+    previousWin: uniqueYears[i - 1],
+    followingWin: uniqueYears[i],
    });
   }
  });

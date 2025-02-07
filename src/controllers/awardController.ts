@@ -7,5 +7,5 @@ export const getAwards = (req: Request, res: Response) => {
  if (!result) {
   sendError(res, "No awards found", null, 404);
  }
- sendSuccess(res, "Awards found", result);
+ res.status(200).json(result);
 };

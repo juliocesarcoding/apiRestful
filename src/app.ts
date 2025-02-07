@@ -20,7 +20,7 @@ server.use(errorHandler);
 server.use(express.json());
 
 (async () => {
- initDatabase();
+ await initDatabase();
 })();
 
 export default server;

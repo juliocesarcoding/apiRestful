@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test award endpoint Should return 200 and an object of awards 1`] = `
+{
+  "max": [
+    {
+      "followingWin": 2015,
+      "interval": 13,
+      "previousWin": 2002,
+      "producer": "Matthew Vaughn",
+    },
+  ],
+  "min": [
+    {
+      "followingWin": 1991,
+      "interval": 1,
+      "previousWin": 1990,
+      "producer": "Joel Silver",
+    },
+  ],
+}
+`;
